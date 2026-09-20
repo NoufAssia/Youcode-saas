@@ -1,3 +1,5 @@
+//Saisie et affichage des elements
+
 const prompt = require("prompt-sync")();
 
 const lenght = Number(prompt("Enter the size of the array: "));

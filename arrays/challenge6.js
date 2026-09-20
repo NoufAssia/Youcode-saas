@@ -1,3 +1,5 @@
+//Multiplication des éléments
+
 const prompt = require("prompt-sync")();
 
 const size = Number(prompt("Enter the size of the array: "));

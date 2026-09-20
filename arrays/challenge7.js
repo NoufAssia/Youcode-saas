@@ -1,4 +1,5 @@
-// Tableau en orde croissant
+// Tableau en ordre croissant
+
 const prompt = require("prompt-sync")();
 
 const size = Number(prompt("Enter the size of array: "));
@@ -7,7 +8,7 @@ let array = [];
 
 for (let i = 0; i < size; i++)
 {
-	let index = prompt("Enter the element at index ${i}: ");
+	let index = Number(prompt(`Enter the element at index ${i}: `));
 	array.push(index);
 }
 for (let i = 0; i < size; i++)

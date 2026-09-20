@@ -1,3 +1,5 @@
+//copie d'un array
+
 const prompt = require("prompt-sync")();
 
 const size = Number(prompt("Enter the size of this array: "));

@@ -1,3 +1,5 @@
+//Initialisation et affichage
+
 let array = [1, 9, 0, 5, 6, 7];
 
 function length(array)

@@ -1,3 +1,5 @@
+//Inversion d'un array
+
 const prompt = require("prompt-sync")();
 
 const size = Number(prompt("Enter the number of elemnts in this array: "));
