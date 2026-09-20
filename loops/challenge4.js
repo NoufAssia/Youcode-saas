@@ -1,3 +1,5 @@
+//affichage des n premiers nombres impaire
+
 const prompt= require("prompt-sync")();
 
 //ask the user

@@ -1,3 +1,5 @@
+//some des n nombres
+
 const prompt = require("prompt-sync")();
 
 //ask the user

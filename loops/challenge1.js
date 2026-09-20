@@ -1,3 +1,5 @@
+// table de multiplication
+
 const prompt = require("prompt-sync")();
 
 //ask the user

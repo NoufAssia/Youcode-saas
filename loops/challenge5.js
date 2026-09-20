@@ -1,3 +1,5 @@
+// calcul de la puissance
+
 const prompt = require("prompt-sync")();
 
 //ask user

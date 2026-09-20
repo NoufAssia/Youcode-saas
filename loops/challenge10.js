@@ -1,3 +1,5 @@
+//Calcule e la somme des N entiers
+
 const prompt = require("prompt-sync")();
 
 //ask user

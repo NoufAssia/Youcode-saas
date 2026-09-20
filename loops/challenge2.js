@@ -1,3 +1,5 @@
+//factorielle d'un nombre
+
 const prompt = require("prompt-sync")();
 
 //ask the user

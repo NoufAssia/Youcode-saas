@@ -1,3 +1,5 @@
+//affichage des N premiers nombres pair
+
 const prompt = require("prompt-sync")();
 
 // ask user

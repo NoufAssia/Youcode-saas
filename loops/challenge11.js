@@ -1,3 +1,5 @@
+//table de multiplication inversée
+
 const prompt = require("prompt-sync")();
 
 //ask user
