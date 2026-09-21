@@ -20,7 +20,6 @@ while (string2[j] !== undefined)
 {
 	stringResult += string2[j];
 	j++;
-	i++;
 }
 
 console.log(stringResult);
