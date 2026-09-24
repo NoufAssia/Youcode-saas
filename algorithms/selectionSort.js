@@ -1,20 +1,20 @@
 let array = [5, 2, 4, 1, 3];
 
-function selectionSort(array)
+for (let i = 0; i < array.length - 1; i++) 
 {
-    for (let i = 1; i < array.length; i++) 
-    {
-        let temp = array[i];
-         let j = i - 1;
+    let min = i;
 
-        while (j >= 0 && array[j] > temp) 
-	    {
-            array[j + 1] = array[j];
-            j = j - 1;
+    for (let j = i + 1; j < array.length; j++) 
+	{
+        if (array[j] < array[min]) 
+		{
+            min = j;
         }
-
-        array[j + 1] = temp;
     }
-    return (array);
+
+        // Swap
+        let temp = array[i];
+        array[i] = array[min];
+        array[min] = temp;
 }
-console.log(selectionSort(array));
+console.log(array);
