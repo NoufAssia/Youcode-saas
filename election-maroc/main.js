@@ -54,10 +54,25 @@ function ajouterCandidats() {
     console.log("Candidat ajouté avec succès.");
 }
 
+// Ajouter plusieurs candidats à la fois.
+
+function ajouterPlusieursCandidats() {
+    // ask user to enter the nombre of candidats
+    console.log();
+    const nombre = Number(prompt("Combien de candidats souhaitez-vous ajouter ? : "));
+
+    for (let i = 0; i < nombre; i++) {
+        console.log();
+        console.log(`--- Candidat numéro: ${i + 1} ---`);
+
+        ajouterCandidats();
+    }
+}
 
 // menu principale
 
 function afficherMenu() {
+    console.log();
     console.log(`=================================
 GESTION DES ÉLECTIONS
 =================================
@@ -70,6 +85,8 @@ GESTION DES ÉLECTIONS
 7. Rechercher des candidats 
 8. Statistiques de l'élection
 0. Quitter`);
+
+    console.log();
 
     const choix = Number(prompt("Votre choix : "));
     return (choix);
@@ -84,6 +101,10 @@ function controlMenu() {
         switch (choix) {
             case 1:
                 ajouterCandidats();
+                break;
+
+            case 2:
+                ajouterPlusieursCandidats();
                 break;
 
             case 0:
