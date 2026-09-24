@@ -50,7 +50,7 @@ function ajouterCandidats() {
     candidates.push(candidat);
 
     // success message
-
+    console.log();
     console.log("Candidat ajouté avec succès.");
 }
 
@@ -64,6 +64,7 @@ function ajouterPlusieursCandidats() {
     for (let i = 0; i < nombre; i++) {
         console.log();
         console.log(`--- Candidat numéro: ${i + 1} ---`);
+        console.log();
 
         ajouterCandidats();
     }
@@ -76,6 +77,10 @@ function afficherLesCandidats() {
         console.log("Aucun candidat enregistré.");
         return;
     }
+
+    console.log();
+    console.log("Voici les candidats enregistré.")
+    console.log();
 
     for (let i = 0; i < candidates.length; i++) {
         const candidat = candidates[i];
@@ -91,6 +96,7 @@ Parti politique : ${candidat.partiPolitique}
 Nombre de votes : ${candidat.electeurs.length}
 =================================`)
     }
+    console.log();
 }
 
 // Afficher candidats par nombre de votes
@@ -145,6 +151,47 @@ Nombre de votes : ${candidat.electeurs.length}
     }
 }
 
+// Afficher les candidats d'un parti politique spécifique
+
+function afficherCandidatsParPartiPolitique()
+{
+    // ask user to enter their parti politique
+    const parti = prompt("Entrer le parti politique : ");
+
+    // search for  candidat par parti politique
+
+    let found = 0;
+
+    console.log(`--- CANDIDATS DU PARTI POLITIQUE : ${parti} ---`);
+
+    for (let i = 0; i < candidates.length; i++)
+    {
+        if (candidates[i].partiPolitique === parti)
+        {
+            const candidat = candidates[i];
+
+            // affiche
+
+            console.log(`=================================
+Candidat ${i + 1}
+=================================
+CIN : ${candidat.cin}
+Nom : ${candidat.nom}
+Prénom : ${candidat.prenom}
+Parti politique : ${candidat.partiPolitique}
+Âge : ${candidat.age}
+Nombre de votes : ${candidat.electeurs.length}
+=================================`);
+
+                found = 1;
+        }
+    }
+
+    if (found === 0)
+    {
+        console.log("Aucun candidat trouvé pour ce parti. ");
+    }
+}
 
 // menu principale
 
@@ -192,6 +239,10 @@ function controlMenu() {
 
             case 4:
                 afficherCandidatsParNombreDeVotes();
+                break;
+            
+            case 5:
+                afficherCandidatsParPartiPolitique();
                 break;
 
             case 0:
