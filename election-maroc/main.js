@@ -54,6 +54,48 @@ function ajouterCandidats() {
     console.log("Candidat ajouté avec succès.");
 }
 
-ajouterCandidats();
-ajouterCandidats();
-console.log(candidates);
+
+// menu principale
+
+function afficherMenu() {
+    console.log(`=================================
+GESTION DES ÉLECTIONS
+=================================
+1. Ajouter un candidat
+2. Ajouter plusieurs candidats
+3. Afficher la list des candidats
+4. Voter pour un candidat
+5. Modifier les informations d'un candidat
+6. Supprimer un candidat
+7. Rechercher des candidats 
+8. Statistiques de l'élection
+0. Quitter`);
+
+    const choix = Number(prompt("Votre choix : "));
+    return (choix);
+}
+
+function controlMenu() {
+    let choix;
+
+    while (choix !== 0) {
+        choix = afficherMenu();
+
+        switch (choix) {
+            case 1:
+                ajouterCandidats();
+                break;
+
+            case 0:
+                console.log("Au revoir.");
+                break;
+
+            default:
+                console.log("Choix invalide.");
+        }
+    }
+
+
+}
+
+controlMenu()
