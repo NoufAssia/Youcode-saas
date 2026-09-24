@@ -69,6 +69,83 @@ function ajouterPlusieursCandidats() {
     }
 }
 
+//  Afficher la liste des candidats.
+
+function afficherLesCandidats() {
+    if (candidates.length === 0) {
+        console.log("Aucun candidat enregistré.");
+        return;
+    }
+
+    for (let i = 0; i < candidates.length; i++) {
+        const candidat = candidates[i];
+
+        console.log(`=================================
+Candidat ${i + 1}
+=================================
+CIN : ${candidat.cin}
+Nom : ${candidat.nom}
+Prénom : ${candidat.prenom}
+Parti politique : ${candidat.partiPolitique}
+Âge : ${candidat.age}
+Nombre de votes : ${candidat.electeurs.length}
+=================================`)
+    }
+}
+
+// Afficher candidats par nombre de votes
+
+function afficherCandidatsParNombreDeVotes() {
+    if (candidates.length === 0) {
+        console.log("Aucun candidat enregistré.");
+        return;
+    }
+
+    // Save original array in another array
+
+    const sortedCandidates = [];
+
+    for (let i = 0; i < candidates.length; i++) {
+        sortedCandidates.push(candidates[i]);
+    }
+
+    // bubble sort
+
+    for (let i = 0; i < sortedCandidates.length - 1; i++) {
+        for (let j = 0; j < sortedCandidates.length - i - 1; j++) {
+            if (sortedCandidates[j].electeurs.length < sortedCandidates[j + 1].electeurs.length) {
+                const swap = sortedCandidates[j];
+                sortedCandidates[j] = sortedCandidates[j + 1];
+                sortedCandidates[j + 1] = swap;
+            }
+        }
+
+    }
+
+    // affichage le candidats par nombre de Votes
+
+    console.log();
+    console.log("--- CANDIDATS PAR NOMBRE DE VOTES ---");
+
+    // loop through candidates and their properties
+
+    for (let i = 0; i < sortedCandidates.length; i++) {
+        const candidat = sortedCandidates[i];
+
+        console.log(`=================================
+Candidat ${i + 1}
+=================================
+CIN : ${candidat.cin}
+Nom : ${candidat.nom}
+Prénom : ${candidat.prenom}
+Parti politique : ${candidat.partiPolitique}
+Âge : ${candidat.age}
+Nombre de votes : ${candidat.electeurs.length}
+=================================`);
+    }
+}
+
+
 // menu principale
 
 function afficherMenu() {
@@ -79,11 +156,13 @@ GESTION DES ÉLECTIONS
 1. Ajouter un candidat
 2. Ajouter plusieurs candidats
 3. Afficher la list des candidats
-4. Voter pour un candidat
-5. Modifier les informations d'un candidat
-6. Supprimer un candidat
-7. Rechercher des candidats 
-8. Statistiques de l'élection
+4. Afficher candidats par nombre de votes
+5. Afficher les candidats d'un parti politique spécifique
+6. Voter pour un candidat
+7. Modifier les informations d'un candidat
+8. Supprimer un candidat
+9. Rechercher des candidats 
+10. Statistiques de l'élection
 0. Quitter`);
 
     console.log();
@@ -105,6 +184,14 @@ function controlMenu() {
 
             case 2:
                 ajouterPlusieursCandidats();
+                break;
+
+            case 3:
+                afficherLesCandidats();
+                break;
+
+            case 4:
+                afficherCandidatsParNombreDeVotes();
                 break;
 
             case 0:
