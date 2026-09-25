@@ -16,7 +16,17 @@ function linearSearch(cin) {
     }
     return (-1);
 }
+// linear Search Return Index
 
+function linearSearchReturnIndex(cin)
+{
+    for (let i = 0; i < candidates.length; i++) {
+        if (candidates[i].cin === cin) {
+            return (i);
+        }
+    }
+    return (-1);
+}
 // Ajouter un condidat
 
 function ajouterCandidats() {
@@ -26,7 +36,7 @@ function ajouterCandidats() {
     const candidatDejaExist = linearSearch(cin);
 
     if (candidatDejaExist !== -1) {
-        console.log("Erreur: cette candidat déja existe.")
+        console.log("Erreur: candidat déja existe.")
         return;
     }
     const nom = prompt("Entrer le nom : ");
@@ -224,7 +234,7 @@ function voter() {
 
         // check
         if (candidat === -1) {
-            console.log("Erreur: cette candidat n'existe pas.");
+            console.log("Erreur: candidat n'existe pas.");
             return;
         }
         else {
@@ -235,8 +245,90 @@ function voter() {
     }
 }
 
+// Modifier les informations d'un candidat
+
+function modifierInfosDeCandidat()
+{
+    const candidatCin = prompt("Entrer la Cin du candidat : ");
+
+    // search for candidat
+
+    const candidat = linearSearch(candidatCin);
+
+    // check
+
+    if (candidat === -1)
+    {
+        console.log("Erreur: candidat n'existe pas.");
+        return;
+    }
+    else
+    {
+        const newParti = prompt("Entrer le nouveau parti politique : ");
+
+        const newAge = Number(prompt("Enter le nouvel age : "));
+
+        // change infos
+
+        candidat.partiPolitique = newParti;
+        candidat.age = newAge;
+
+        console.log();
+        console.log("Les informations du candidat ont été mises à jour avec succès. ");
+        console.log();
+    }
 
 
+}
+
+
+// Supprimer un candidat
+
+function supprimerUnCandidat()
+{
+    console.log();
+    const candidatCin = prompt("Entrer la Cin du candidat : ");
+
+    // search for candidat
+
+    const candidatIndex = linearSearchReturnIndex(candidatCin);
+
+    // check
+
+    if (candidatIndex === -1)
+    {
+        console.log();
+        console.log("Erreur: candidat n'existe pas.");
+        return;
+    }
+    else
+    {
+        console.log();
+        console.log("Fais attention cette procédure supprimera le candidat de la base de données !");
+        console.log();
+        const safecheck = prompt("Es-tu sûr? (Non / Oui) : ");
+
+        if (safecheck === "Non")
+        {
+            console.log();
+            console.log("La suppression a été annulée.");
+            return;
+        }
+        else if (safecheck === "Oui")
+        {
+            candidates.splice(candidatIndex, 1);
+
+            console.log();
+            console.log("Le candidat a été supprimé avec succès.");
+            console.log();
+            return;
+        }
+        console.log();
+        console.log("Votre réponse est incorrecte. La suppression a été annulée.");
+
+        
+    }
+}
 // menu principale
 
 function afficherMenu() {
@@ -291,6 +383,14 @@ function controlMenu() {
 
             case 6:
                 voter();
+                break;
+
+            case 7:
+                 modifierInfosDeCandidat();
+                 break;
+
+            case 8:
+                supprimerUnCandidat();
                 break;
 
             case 0:
