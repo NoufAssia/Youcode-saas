@@ -6,7 +6,7 @@ const prompt = require("prompt-sync")();
 
 const candidates = [];
 
-// Linear search function
+// Linear search function par cin 
 
 function linearSearch(cin) {
     for (let i = 0; i < candidates.length; i++) {
@@ -16,10 +16,21 @@ function linearSearch(cin) {
     }
     return (-1);
 }
+
+// Linear search function par nom 
+
+function linearSearchParNom(nom) {
+    for (let i = 0; i < candidates.length; i++) {
+        if (candidates[i].nom === nom) {
+            return candidates[i];
+        }
+    }
+    return (-1);
+}
+
 // linear Search Return Index
 
-function linearSearchReturnIndex(cin)
-{
+function linearSearchReturnIndex(cin) {
     for (let i = 0; i < candidates.length; i++) {
         if (candidates[i].cin === cin) {
             return (i);
@@ -247,8 +258,7 @@ function voter() {
 
 // Modifier les informations d'un candidat
 
-function modifierInfosDeCandidat()
-{
+function modifierInfosDeCandidat() {
     const candidatCin = prompt("Entrer la Cin du candidat : ");
 
     // search for candidat
@@ -257,13 +267,11 @@ function modifierInfosDeCandidat()
 
     // check
 
-    if (candidat === -1)
-    {
+    if (candidat === -1) {
         console.log("Erreur: candidat n'existe pas.");
         return;
     }
-    else
-    {
+    else {
         const newParti = prompt("Entrer le nouveau parti politique : ");
 
         const newAge = Number(prompt("Enter le nouvel age : "));
@@ -284,8 +292,7 @@ function modifierInfosDeCandidat()
 
 // Supprimer un candidat
 
-function supprimerUnCandidat()
-{
+function supprimerUnCandidat() {
     console.log();
     const candidatCin = prompt("Entrer la Cin du candidat : ");
 
@@ -295,27 +302,23 @@ function supprimerUnCandidat()
 
     // check
 
-    if (candidatIndex === -1)
-    {
+    if (candidatIndex === -1) {
         console.log();
         console.log("Erreur: candidat n'existe pas.");
         return;
     }
-    else
-    {
+    else {
         console.log();
         console.log("Fais attention cette procédure supprimera le candidat de la base de données !");
         console.log();
         const safecheck = prompt("Es-tu sûr? (Non / Oui) : ");
 
-        if (safecheck === "Non")
-        {
+        if (safecheck === "Non") {
             console.log();
             console.log("La suppression a été annulée.");
             return;
         }
-        else if (safecheck === "Oui")
-        {
+        else if (safecheck === "Oui") {
             candidates.splice(candidatIndex, 1);
 
             console.log();
@@ -326,9 +329,87 @@ function supprimerUnCandidat()
         console.log();
         console.log("Votre réponse est incorrecte. La suppression a été annulée.");
 
-        
+
     }
 }
+
+// Rechercher des candidats par nom
+
+function rechercherDesCandidats() {
+    const nom = prompt("Entrer le nom de candidat : ");
+
+    const rechercheNom = linearSearchParNom(nom);
+
+    if (rechercheNom === -1) {
+        console.log();
+        console.log("Erreur: candidat n'existe pas.");
+        return;
+    }
+    else {
+        console.log();
+        console.log("Candidat est exist.");
+    }
+
+}
+
+// Statistiques de l'élection
+function Statistiques() {
+    // Nombre totale des candidats
+
+    console.log(`Voice le nombre totale des candidtas : ${candidates.length} .`);
+
+    //nombre totale de votes
+    let resultat = 0;
+    for (let i = 0; i < candidates.length; i++) {
+        resultat += candidates[i].electeurs.length;
+    }
+    console.log(`Voici le nombre totale de votes exprimés dans toute l'élection : ${resultat}.`);
+
+    // Top 3 candidats / votes
+
+    const sortedCandidates = [];
+
+    for (let i = 0; i < candidates.length; i++) {
+        sortedCandidates.push(candidates[i]);
+    }
+
+    // bubble sort
+
+    for (let i = 0; i < sortedCandidates.length - 1; i++) {
+        for (let j = 0; j < sortedCandidates.length - i - 1; j++) {
+            if (sortedCandidates[j].electeurs.length < sortedCandidates[j + 1].electeurs.length) {
+                const swap = sortedCandidates[j];
+                sortedCandidates[j] = sortedCandidates[j + 1];
+                sortedCandidates[j + 1] = swap;
+            }
+        }
+
+    }
+
+    let fin = 3;
+
+    if (sortedCandidates.length < 3) {
+        fin = sortedCandidates.length;
+    }
+
+    for (let i = 0; i < fin; i++) {
+        console.log(`=================================
+Candidat ${i + 1}
+=================================
+CIN : ${candidat.cin}
+Nom : ${candidat.nom}
+Prénom : ${candidat.prenom}
+Parti politique : ${candidat.partiPolitique}
+Âge : ${candidat.age}
+Nombre de votes : ${candidat.electeurs.length}
+=================================`);
+    }
+
+    // candidats par parti politique
+
+
+}
+
 // menu principale
 
 function afficherMenu() {
@@ -386,11 +467,19 @@ function controlMenu() {
                 break;
 
             case 7:
-                 modifierInfosDeCandidat();
-                 break;
+                modifierInfosDeCandidat();
+                break;
 
             case 8:
                 supprimerUnCandidat();
+                break;
+
+            case 9:
+                rechercherDesCandidats();
+                break;
+
+            case 10:
+                Statistiques();
                 break;
 
             case 0:
@@ -405,4 +494,4 @@ function controlMenu() {
 
 }
 
-controlMenu()
+controlMenu();
